@@ -1,0 +1,136 @@
+body {
+  background-color: black;
+  padding-top: 20vh;
+}
+
+#converter-app {
+  text-align: center;
+}
+
+.converter {
+  width: 50vw !important;
+  margin: 0 auto !important;
+  background-color: white;
+  padding: 25px !important;
+  overflow: hidden !important;
+}
+
+h1 {
+  user-select: none;
+}
+
+.buttons .button {
+  background-color: white;
+}
+
+.buttons .button:focus, .buttons .button:hover {
+  background-color: white;
+}
+
+.divider {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.processor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 25px;
+}
+
+.left {
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+}
+
+.right {
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+}
+
+.mid {
+  grid-row: 2;
+  grid-column: 1 / 3;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding-bottom: 5px;
+}
+
+.calculation {
+  font-size: 75%;
+  user-select: none;
+}
+
+#copyright {
+  padding-top: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  user-select: none;
+}
+
+
+/* large Monitor ----------- */
+@media only screen and (min-width : 1924px) {
+  .converter {
+    width: 40vw !important;
+  }
+}
+
+/* Small Monitor ----------- */
+@media only screen and (max-width : 1200px) {
+  .converter {
+    width: 70vw !important;
+  }
+}
+
+/* Tablet ----------- */
+@media only screen and (max-width : 991px) {
+  .converter {
+    width: 80vw !important;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 768px) {
+  .converter {
+    width: 90vw !important;
+  }
+  .buttons .button {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .processor {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0px;
+  }
+  .left {
+    grid-row: 1;
+  }
+  .right {
+    grid-row: 3;
+  }
+  .mid {
+    grid-row: 2;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  .negative {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}

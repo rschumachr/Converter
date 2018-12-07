@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Converter</title>
+
+    <!-- Importing the various CDN's -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="converter-app">
+      <div class="ui card converter">
+        <header>
+          <h1>{{selectedtitle}} Converter</h1>
+          <div class="ui buttons">
+              <button @click="showType('t')" class="ui button">Temperature</button>
+              <button @click="showType('w')" class="ui button">Weight</button>
+              <button @click="showType('d')" class="ui button">Distance</button>
+          </div>
+          <div class="ui section divider"></div>
+        </header>
+        <main>
+          <!-- #################### Temperature Section #################### -->
+          <section id="temp" :class="{ hidden: hideTemp }">
+            <div class="processor">
+              <div class="left">
+                <ul>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Celsius</div>
+                      <input size="10" type="text" v-model="celsius" placeholder="Enter Temp.." @keyup.enter="convertTemp()">
+                    </div>
+                  </li>
+                  <li><p class="calculation">Fahrenheit = (Celsius * 9 / 5) + 32 </p></li>
+                </ul>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="fahrenheit" placeholder="Enter Temp.." @keyup.enter="convertTemp()">
+                      <div class="ui basic label">Fahrenheit</div>
+                    </div>
+                  </li>
+                  <li><p class="calculation">Celsius = (Fahrenheit - 32) * 5 / 9</p></li>
+                </ul>
+              </div>
+              <div class="mid">
+                <button @click="convertTemp()" class="ui primary button">Convert</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- #################### Weight Section #################### -->
+          <section id="weight" :class="{ hidden: hideWeight }">
+            <div class="processor">
+              <div class="left">
+                <ul>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Kilogram</div>
+                      <input size="10" type="text" v-model="kilogram" placeholder="Enter Weight.." @keyup.enter="convertWeight()">
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Gram</div>
+                      <input size="10" type="text" v-model="gram" placeholder="Enter Weight.." @keyup.enter="convertWeight()">
+                    </div>
+                  </li>
+                  <li><p class="calculation">1 Kilogram = 1000 Gram</p></li>
+                </ul>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="pound" placeholder="Enter Weight.." @keyup.enter="convertWeight()">
+                      <div class="ui basic label">Pound</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="ounce" placeholder="Enter Weight.." @keyup.enter="convertWeight()">
+                      <div class="ui basic label">Ounce</div>
+                    </div>
+                  </li>
+                  <li><p class="calculation">1 Pound = 16 Ounces</p></li>
+                </ul>
+              </div>
+              <div class="mid">
+                <button @click="convertWeight()" class="ui primary button">Convert</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- #################### Distance Section #################### -->
+          <section id="distance" :class="{ hidden: hideDistance }">
+            <div class="processor">
+              <div class="left">
+                <ul>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Kilometer</div>
+                      <input size="10" type="text" v-model="kilometer" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Meter</div>
+                      <input size="10" type="text" v-model="meter" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Centimeter</div>
+                      <input size="10" type="text" v-model="centimeter" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui left labeled input">
+                      <div class="ui basic label">Millimeter</div>
+                      <input size="10" type="text" v-model="millimeter" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                    </div>
+                  </li>
+                  <li><p class="calculation">1km = 1000m | 1m = 100cm | 1cm = 10mm</p></li>
+                </ul>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="mile" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                      <div class="ui basic label">Mile</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="yard" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                      <div class="ui basic label">Yard</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="foot" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                      <div class="ui basic label">Foot</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="ui right labeled input">
+                      <input size="10" type="text" v-model="inch" placeholder="Enter Distance.." @keyup.enter="convertDistance()">
+                      <div class="ui basic label">Inch</div>
+                    </div>
+                  </li>
+                  <li><p class="calculation">1m = 1760y | 1y = 3f | 1f = 12in</p></li>
+                </ul>
+              </div>
+              <div class="mid">
+                <button @click="convertDistance()" class="ui primary button convertbtn">Convert</button>
+              </div>
+            </div>
+          </section>
+
+          <button @click="reset()" class="ui negative button">Reset</button>
+        </main>
+        <footer>
+          <div class="ui section divider"></div>
+          <p id="copyright">2018 &copy; rschumachr</p>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
